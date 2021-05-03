@@ -35,6 +35,12 @@ class Order extends Model
         $begin = $interval[0];
         $end = $interval[1];
 
-        return Order::query()->where('started_at', '>=', $begin)->where('started_at', '<=', $end)->get();
+        return Order::query()
+                    ->where('started_at', '>=', $begin)
+                    ->where('started_at', '<=', $end)
+                    ->get()
+                    ->filter(function($item){
+                        return $item['status'] == 1;
+                    });
     }
 }
