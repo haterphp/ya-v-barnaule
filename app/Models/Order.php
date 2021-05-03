@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,6 +35,6 @@ class Order extends Model
         $begin = $interval[0];
         $end = $interval[1];
 
-        return Order::query()->where('started_at', '>=', $begin)->where('finished_at', '<=', $end)->get();
+        return Order::query()->where('started_at', '>=', $begin)->where('started_at', '<=', $end)->get();
     }
 }

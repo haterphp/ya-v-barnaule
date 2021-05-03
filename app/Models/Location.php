@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -84,5 +86,18 @@ class Location extends Model
         });
 
         return $idx === null ? $photos : $photos[$idx];
+    }
+
+    public function ordersInMonth()
+    {
+        $year = Carbon::now()->format('Y');
+        $month = Carbon::now()->format('m');
+
+        $begin = (new DateTime("first day of $year-$month"))->format('Y-m-d');
+        $end = (new DateTime("last day of $year-$month"))->format('Y-m-d');
+
+        return $this->orders->filter(function($item) use($begin, $end){
+            return $item['started_at'] >= $begin && $item['started_at'] <= $end && $item['status'] == 1;
+        });
     }
 }
