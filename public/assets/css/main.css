@@ -379,14 +379,14 @@ h1 { font-size: 60px }
     color: #bfbfbf !important;
 }
 
-.rate-input > .fa{
+.rate-input-stars > .fa{
     cursor: pointer;
 }
 
 .rate > .fa.checked,
 .rate > .fa.checked ~ .fa,
-.rate.rate-input > .fa:hover,
-.rate.rate-input > .fa:hover ~ .fa {
+.rate.rate-input-stars > .fa:hover,
+.rate.rate-input-stars > .fa:hover ~ .fa {
      color: #F3E561 !important;
 }
 
