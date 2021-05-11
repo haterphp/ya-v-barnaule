@@ -2,6 +2,25 @@
 
 @section('title', 'Я в Барнауле - ' . $location->title)
 
+@php
+    $reverseCounts = [
+        1 => "5",
+        2 => "4",
+        3 => "3",
+        4 => "2",
+        5 => "1",
+    ];
+
+    $additionalText = [
+        "5" => "Отличная локация",
+        "4" => "Хорошая локация",
+        "3" => "Обычная локация",
+        "2" => "Плохая локация",
+        "1" => "Ужасная локация",
+    ]
+
+@endphp
+
 @section('content')
 <div class="wrap wrap-catalog">
     <div class="site-container">
@@ -67,11 +86,9 @@
                     <div class="d-flex align-items-center">
                         <b class="mr-3">Рейтинг:</b>
                         <div class="rate mt-0 mb-0">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                            @for($i = 1; $i <=5; $i++)
+                                <span class="fa fa-star @if($reverseCounts[$i] == $location->rate()) checked @endif"></span>
+                            @endfor
                         </div>
                     </div>
                     <div class="wrap d-flex mt-4">            
@@ -86,6 +103,76 @@
                                 @endif
                             </button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap mt-5">
+            <h3 style="margin-left: 15px">Отзывы</h3>
+            <div class="wrap mt-3">
+                <div class="row flex-lg-row-reverse">
+                    <div class="col-12 col-lg-4">
+                        <div class="wrap" style="position: sticky; top: 35px;">
+                            <h6 class="text-muted">Отзывы с оценкой</h6>
+                            <div class="wrap mt-3">
+                                @foreach($reviewsCount as $key => $value)
+                                    <div class="wrap d-flex align-items-center">
+                                        <div class="rate small mt-0 mb-0">
+                                            @for($i = 1; $i <=5; $i++)
+                                                <span class="fa fa-star @if($reverseCounts[$i] == $key) checked @endif"></span>
+                                            @endfor
+                                        </div>
+                                        <p class="mb-0 ml-3 mt-0 text-muted">
+                                            {{ plural(['%d отзыв', '%d отзыва', '%d отзывов'], (integer) $value) }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                            <div class="wrap d-flex flex-column mb-3">
+                                @foreach($reviews as $review)
+                                    <div class="card mt-3">
+                                        <div class="card-body d-flex">
+                                            <img src="{{ asset('assets/sources/images/default.jpg') }}" class="default-user-image" alt="">
+                                            <div class="wrap w-100 ml-3 mt-2">
+                                                <div class="wrap mb-2 d-flex justify-content-between align-items-start">
+                                                    <div class="wrap">
+                                                        <b>{{$review->user->name}}</b>
+                                                        <div class="wrap d-flex align-items-center">
+                                                            <div class="rate small mt-0 mb-0">
+                                                                @for($i = 1; $i <=5; $i++)
+                                                                    <span class="fa fa-star @if($reverseCounts[$i] == $review->rate) checked @endif"></span>
+                                                                @endfor
+                                                            </div>
+                                                            <small class="ml-2 mb-0 text-muted">{{$additionalText[$review->rate]}}</small>
+                                                        </div>
+                                                    </div>
+                                                    @can('admin')
+                                                        <form action="{{ route('review.destroy', ['review' => $review->id]) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-light">
+                                                                <i class="fa fa-ban text-muted"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endcan
+                                                </div>
+                                                <p class="mb-0 card-text">{{$review->content}}</p>
+                                                <small class="text-muted mt-2">Отзыв оставлен {{ dateFormat($review->created_at, 'Y-m-d H:i') }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @if(!$reviews->count())
+                                        <div class="wrap mt-3">
+                                            <h5 class="text-muted">У данной локации нет комментариев</h5>
+                                       </div>
+                                @endif
+                            </div>
+                            {{ $reviews->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,11 +259,14 @@
         const state = url.get('state') || null;
         if(state === 'modal') $('#booking-modal').modal('show');
         $('#booking-modal').on('show.bs.modal', function (e) {
-            history.replaceState({state: 'modal'}, null, `?state=modal`)
+            const url = new URL(location.href);
+            url.searchParams.append('state', 'modal')
+            history.replaceState({state: 'modal'}, null, url)
         })
         $('#booking-modal').on('hidden.bs.modal', function (e) {
-            history.replaceState({state: null}, null, '?')
-
+            const url = new URL(location.href);
+            url.searchParams.delete('state', 'modal')
+            history.replaceState({state: 'modal'}, null, url)
         })
     </script>
 @endpush

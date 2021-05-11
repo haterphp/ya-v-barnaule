@@ -13,6 +13,7 @@ use \App\Http\Controllers\Dashboard\Order\OrderController as DashboardOrderContr
 use \App\Http\Controllers\Web\Location\LocationController as AppLocationsController;
 use App\Http\Controllers\Web\Order\OrderController;
 use App\Http\Controllers\Web\User\WishListController;
+use \App\Http\Controllers\Web\Location\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/wish', [WishListController::class, 'index'])->name('profile.wish');
     Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders');
     Route::post('/order/{location}', [OrderController::class, 'store'])->name('order.store');
-    
+
+    Route::post('/order/{order}/review', [ReviewController::class, 'store'])->name('review.store');
+    Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
     Route::name('dashboard.')->prefix('dashboard')->middleware('can:admin')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('locations', LocationController::class);

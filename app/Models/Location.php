@@ -51,6 +51,20 @@ class Location extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function reviews()
+    {
+        return $this->orders->map->reviews->flatten()->reverse();
+    }
+
+    public function rate()
+    {
+        $reviews = $this->reviews();
+        $count = $reviews->count();
+        if($count == 0) return 0;
+        $rateSum = $reviews->map->rate->sum();
+        return ceil($rateSum / $count);
+    }
+
     public function uploadPhotos($photos)
     {
         

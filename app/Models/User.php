@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->belongsToMany(Location::class, Order::class)
-                    ->withPivot('started_at', 'finished_at', 'status', 'code');
+                    ->withPivot('id', 'started_at', 'finished_at', 'status', 'code');
     }
 
     public function setPasswordAttribute($password)

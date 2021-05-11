@@ -206,8 +206,11 @@ h1 { font-size: 60px }
     margin-left: 0;
 }
 
+.card{
+    border-radius: .5rem;
+}
 
-.catalog-card{
+.outline-card{
     border: none;
 }
 
@@ -241,15 +244,6 @@ h1 { font-size: 60px }
     background: rgba(0, 0, 0, 0.5);
 }
 
-.catalog-card .card-body .rate{
-    margin: 0 ;
-    margin-top: 7px !important;
-}
-
-.catalog-card .card-body .rate .fa{
-    font-size: 15px;
-}
-
 .wish-list-icon{
     font-size: 20px;
     color: rgb(155, 155, 155) !important;
@@ -261,6 +255,19 @@ h1 { font-size: 60px }
 
 .price{
     color: var(--site-primary) !important;
+}
+
+.default-user-image{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.page-item.active .page-link{
+    border-color: var(--site-primary) !important;
+    background: var(--site-primary) !important;
+    color: #fff !important;
 }
 
 @media all and (max-width: 1700px) {
@@ -358,8 +365,13 @@ h1 { font-size: 60px }
 }
 
 .rate{
+    direction: rtl;
     margin-bottom: 35px;
     margin-top: 10px;
+}
+
+.rate.small > .fa{
+    font-size: 15px;
 }
 
 .rate > .fa{
@@ -367,8 +379,15 @@ h1 { font-size: 60px }
     color: #bfbfbf !important;
 }
 
-.rate > .fa.checked{
-    color: #F3E561 !important;
+.rate-input > .fa{
+    cursor: pointer;
+}
+
+.rate > .fa.checked,
+.rate > .fa.checked ~ .fa,
+.rate.rate-input > .fa:hover,
+.rate.rate-input > .fa:hover ~ .fa {
+     color: #F3E561 !important;
 }
 
 body:not(.auth) .footer{

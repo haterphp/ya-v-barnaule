@@ -30,6 +30,11 @@ class Order extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public static function ordersInInterval($interval)
     {
         $begin = $interval[0];

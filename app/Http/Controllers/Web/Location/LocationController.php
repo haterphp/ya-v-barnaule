@@ -65,8 +65,21 @@ class LocationController extends Controller
         return view('app.catalog.index', compact('locations', 'filters', 'categories'));
     }
 
+    protected function locationReviewsCount($reviews){
+        $instance = [
+            "5" => 0,
+            "4" => 0,
+            "3" => 0,
+            "2" => 0,
+            "1" => 0,
+        ];
+        return object_merge($instance, $reviews->groupBy('rate')->map->count()->toArray());
+    }
+
     public function show(Location $location)
     {
-        return view('app.catalog.show', compact('location'));
+        $reviewsCount = $this->locationReviewsCount($location->reviews());
+        $reviews = CollectionHelper::paginate($location->reviews(), 10);
+        return view('app.catalog.show', compact('location', 'reviews', 'reviewsCount'));
     }
 }

@@ -62,3 +62,20 @@ function array_equal($a, $b) {
          && array_diff($a, $b) === array_diff($b, $a)
     );
 }
+
+function object_merge(...$arrays){
+    $merged = [];
+    foreach ($arrays as $array){
+        foreach ($array as $key => $value){
+            $merged[$key] = $value;
+        }
+    }
+    return $merged;
+}
+
+function plural($endings, $number)
+{
+    $cases = [2, 0, 1, 1, 1, 2];
+    $n = $number;
+    return sprintf($endings[ ($n%100>4 && $n%100<20) ? 2 : $cases[min($n%10, 5)] ], $n);
+}

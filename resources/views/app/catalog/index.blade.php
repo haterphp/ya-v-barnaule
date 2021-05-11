@@ -39,11 +39,5 @@
             min-height: 100vh;
             margin-bottom: 30vh;
         }
-
-        .page-item.active .page-link{
-            border-color: var(--site-primary) !important; 
-            background: var(--site-primary) !important;
-            color: #fff !important;
-        }
     </style>
 @endpush
