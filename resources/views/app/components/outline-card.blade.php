@@ -36,7 +36,7 @@
     <div class="card-body d-flex align-items-start justify-content-between pr-0 pl-0">
         <div class="wrap">
             <p class="card-title mb-0">{{ $location->title }}</p>
-            <div class="rate small mt-1">
+            <div class="rate small mt-1 mb-0">
                 @for($i = 1; $i <=5; $i++)
                     <span class="fa fa-star @if($reverseCounts[$i] == $location->rate()) checked @endif"></span>
                 @endfor
