@@ -18,7 +18,7 @@
             <small class="invalid-feedback text-danger">message</small>
         </div>
         <div class="d-flex align-items-center">
-            <button class="btn btn-primary text-white">Войти</button>
+            <button class="btn btn-primary text-white" id="btn-login">Войти</button>
             <a href="{{ route('user.create') }}" class="btn btn-link">Регистрация</a>
         </div>
     </form>
