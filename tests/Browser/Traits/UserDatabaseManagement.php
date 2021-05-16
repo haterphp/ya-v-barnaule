@@ -7,11 +7,6 @@ use App\Models\User;
 trait UserDatabaseManagement{
     protected $users = [];
 
-    public function __construct()
-    {
-        $this->users = collect([]);
-    }
-
     protected function makeUser($body = []){
         $body = object_merge([
             'name' => 'test',
@@ -19,7 +14,9 @@ trait UserDatabaseManagement{
             'password' => 'test',
             'role_id' => 2
         ], $body);
-        $this->users->push(User::create($body));
+        $user = User::create($body);
+        $this->users[$user->id] = $user;
+        return $user;
     }
 
     protected function destroyUser($id){

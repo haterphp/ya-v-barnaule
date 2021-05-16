@@ -43,14 +43,13 @@ class LoginTest extends DuskTestCase
     public function testCorrectBody()
     {
         $this->browse(function (Browser $browser){
-            $this->makeUser();
-            $email = '';
-            $password = '';
+            $user = $this->makeUser();
             $browser
                 ->visit(new LoginPage)
-                ->type('@email', $email)
-                ->type('@password', $password)
-                ->click('@submit');
+                ->type('@email', $user->email)
+                ->type('@password', $user->password)
+                ->click('@submit')
+                ->assertPathIs('/');
         });
     }
 }
