@@ -18,6 +18,7 @@ class LocationController extends Controller
 
     protected function getFilters(Request $request)
     {
+        $title = $request->title ?? "";
         $price = $request->get('price') ? explode(',', $request->get('price')) : [1000, 10000];
         // $time = $request->get('time') ? explode(',', $request->get('time')) : [8, 23];
         $payment_method = $request->get('payment_method') ?? [];
@@ -26,7 +27,7 @@ class LocationController extends Controller
 
         $this->rangeFormatter($price);
         // $this->rangeFormatter($time);
-        return compact('price', 'payment_method', 'person_count', 'categories');
+        return compact('title', 'price', 'payment_method', 'person_count', 'categories');
     }
 
     public function index(Request $request)
@@ -34,6 +35,8 @@ class LocationController extends Controller
         $filters = $this->getFilters($request);
 
         $locations = Location::query();
+
+        $locations->where('title', 'like', '%' . $filters["title"] . '%');
 
         $locations->whereBetween('price', $filters['price']);
 

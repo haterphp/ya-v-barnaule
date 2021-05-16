@@ -5,30 +5,35 @@
 @section('content')
     <div class="wrap wrap-catalog">
         <div class="site-container">
-            <div class="row mt-3">
-                <div class="col-12 col-md-5 col-xl-3">
-                    @include('app.components.filter')
-                </div>
-                <div class="col-12 col-md-7 col-xl-9 mt-5 mt-md-0">
-                    <h1 class="h2" style="padding-left: 15px">Каталог</h1>
-                    <div class="wrap mt-3">
-                        <div class="row">
-                            @foreach ($locations as $location)
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    @include('app.components.outline-card', compact('location'))
-                                </div>
-                            @endforeach
-                        </div>
-                        @if (!count($locations))
-                            <div class="wrap mt-3" style="margin-left: 15px">
-                                <h3 class="text-muted">По данному запросу ничего не найдено</h3>
-                                <p class="text-muted">Выберете другие параметры и попробуйте снова</p>
-                            </div>
-                        @endif
+            <form class="filter-form">
+                <div class="row mt-3">
+                    <div class="col-12 col-md-5 col-xl-3">
+                        @include('app.components.filter')
                     </div>
-                    @include('components.paginate', ['body' => $locations])
+                    <div class="col-12 col-md-7 col-xl-9 mt-5 mt-md-0">
+                        <div class="form-group" style="padding-left: 15px">
+                            <input type="text" onchange="document.querySelector('.filter-form').submit()" value="{{ $filters['title'] }}" placeholder="Название локации" class="form-control" name="title">
+                        </div>
+                        <h1 class="h2" style="padding-left: 15px">Каталог</h1>
+                        <div class="wrap mt-3">
+                            <div class="row">
+                                @foreach ($locations as $location)
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        @include('app.components.outline-card', compact('location'))
+                                    </div>
+                                @endforeach
+                            </div>
+                            @if (!count($locations))
+                                <div class="wrap mt-3" style="margin-left: 15px">
+                                    <h3 class="text-muted">По данному запросу ничего не найдено</h3>
+                                    <p class="text-muted">Выберете другие параметры и попробуйте снова</p>
+                                </div>
+                            @endif
+                        </div>
+                        @include('components.paginate', ['body' => $locations])
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection
