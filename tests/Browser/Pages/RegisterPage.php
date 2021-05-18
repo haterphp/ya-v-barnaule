@@ -13,7 +13,7 @@ class RegisterPage extends Page
      */
     public function url()
     {
-        return '/';
+        return '/user/create';
     }
 
     /**
@@ -24,7 +24,15 @@ class RegisterPage extends Page
      */
     public function assert(Browser $browser)
     {
-        $browser->assertPathIs($this->url());
+        $browser
+            ->assertTitle('Я в Барнауле - Регистрация')
+            ->assertSee('Регистрация')    
+            ->assertPathIs($this->url());
+    }
+
+    public function assertSeeError(Browser $browser)
+    {
+        $browser->assertSee('Это поле обязательное.');
     }
 
     /**
@@ -35,7 +43,11 @@ class RegisterPage extends Page
     public function elements()
     {
         return [
-            '@element' => '#selector',
+            "@name" => "input[name='name']",
+            "@email" => "input[name='email']",
+            "@phone" => "input[name='phone']",
+            "@password" => "input[name='password']",
+            '@submit' => '#btn-signup',
         ];
     }
 }

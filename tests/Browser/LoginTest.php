@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\LoginPage;
@@ -49,7 +50,8 @@ class LoginTest extends DuskTestCase
                 ->type('@email', $user->email)
                 ->type('@password', $user->password)
                 ->click('@submit')
-                ->assertPathIs('/');
+                ->assertPathIs('/')
+                ->assertAuthenticatedAs($this->findUser($user->id));
         });
     }
 }

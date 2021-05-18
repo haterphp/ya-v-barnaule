@@ -39,7 +39,7 @@
             @enderror
         </div>
         <div class="d-flex align-items-center flex-wrap">
-            <button class="btn btn-primary text-white mr-3 mt-2 mb-2">Создать аккаунт</button>
+            <button class="btn btn-primary text-white mr-3 mt-2 mb-2" id="btn-signup">Создать аккаунт</button>
             <a href="{{ route('auth.create') }}" class="btn-link">Войти в аккаунт</a>
         </div>
     </form>

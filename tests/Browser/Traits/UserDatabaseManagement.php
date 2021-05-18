@@ -15,11 +15,14 @@ trait UserDatabaseManagement{
             'role_id' => 2
         ], $body);
         $user = User::create($body);
-        $this->users[$user->id] = $user;
-        return $user;
+        return (object) object_merge($user->toArray(), [ 'password' => $body['password'] ]);
     }
 
     protected function destroyUser($id){
+        User::findAndDelete($id);
+    }
 
+    protected function findUser($id){
+        return User::find($id);
     }
 }
