@@ -13,11 +13,6 @@ use Tests\DuskTestCase;
 class LoginTest extends DuskTestCase
 {
     use DatabaseMigrations, UserDatabaseManagement, DatabaseSeeders;
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
 
     public function testEmptyBody()
     {

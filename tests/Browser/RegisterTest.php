@@ -12,11 +12,7 @@ use Tests\DuskTestCase;
 class RegisterTest extends DuskTestCase
 {
     use DatabaseMigrations, DatabaseSeeders, UserDatabaseManagement;
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
+
     public function testEmptyBody()
     {
         $this->browse(function (Browser $browser) {
