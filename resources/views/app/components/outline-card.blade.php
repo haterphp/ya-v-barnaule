@@ -17,7 +17,7 @@
                     <a href="{{ route('catalog.show', ['location' => $location]) }}" class="btn btn-primary">Подробнее</a>
                     <form action="{{ route('wish.store', ['location' => $location]) }}" method="post">
                         @csrf
-                        <button class="btn btn-light ml-2 d-flex align-items-center justify-content-center">
+                        <button class="btn btn-light ml-2 d-flex align-items-center justify-content-center btn-wish">
                             @if (auth()->user() && auth()->user()->wishList->pluck('id')->contains($location->id))
                                 <i class="fa fa-heart wish-list-icon active"></i>
                             @else

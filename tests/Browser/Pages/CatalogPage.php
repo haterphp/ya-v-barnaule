@@ -3,8 +3,6 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
-use PHPUnit\TextUI\XmlConfiguration\PHPUnit;
-use Tests\Browser\BaseBrowser;
 
 class CatalogPage extends Page
 {
@@ -41,7 +39,6 @@ class CatalogPage extends Page
     {
         return [
             '@title' => 'input[name="title"]',
-            '@wish' => 'input[name="title"]',
             '@price' => 'input[name="price"]',
             '@cash' => 'input[name="payment_method[]"][value="cash"]',
             '@non-cash' => 'input[name="payment_method[]"][value="non-cash"]',

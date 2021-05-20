@@ -85,14 +85,9 @@
                     </p>
                     <div class="d-flex align-items-center">
                         <b class="mr-3">Рейтинг:</b>
-                        <div class="rate mt-0 mb-0">
-                            @for($i = 1; $i <=5; $i++)
-                                <span class="fa fa-star @if($reverseCounts[$i] == $location->rate()) checked @endif"></span>
-                            @endfor
-                        </div>
                     </div>
                     <div class="wrap d-flex mt-4">            
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#booking-modal">Забронировать</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#booking-modal" id="btn-booking-modal">Забронировать</button>
                         <form action="{{ route('wish.store', ['location' => $location]) }}" method="post">
                             @csrf
                             <button class="btn btn-light ml-2 d-flex align-items-center justify-content-center">
@@ -316,7 +311,8 @@
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between align-items-center">
-          <button @guest() disabled @endguest type="button" class="btn btn-primary" 
+          <button @guest() disabled @endguest type="button" class="btn btn-primary"
+                    id="btn-booking"
                     onclick="document.querySelector('#booking-form').submit()">Забронировать</button>
           <h3 class="price">{{ $location->price }} <span class="text-muted">₽ / час</span></h3>
         </div>
