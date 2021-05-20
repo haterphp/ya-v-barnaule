@@ -41,12 +41,12 @@ class CatalogPage extends Page
     {
         return [
             '@title' => 'input[name="title"]',
+            '@wish' => 'input[name="title"]',
             '@price' => 'input[name="price"]',
             '@cash' => 'input[name="payment_method[]"][value="cash"]',
             '@non-cash' => 'input[name="payment_method[]"][value="non-cash"]',
             '@persons' => 'input[name="person_count"]',
             '@categories' => 'input[name="categories[]"][id="category-checkbox-1"]',
-            '@card' => '.catalog-card'
         ];
     }
 

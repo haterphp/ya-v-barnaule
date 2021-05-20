@@ -24,4 +24,13 @@ class CatalogTest extends DuskTestCase
                 ->visit(new CatalogPage);
         });
     }
+
+    public function testCatalogPagination()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit(new CatalogPage)
+                ->assertVisible('.pagination');
+        });
+    }
 }
