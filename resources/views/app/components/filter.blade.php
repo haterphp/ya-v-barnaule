@@ -33,7 +33,7 @@
                         'id' => 'filter-price-range',
                         'name' => 'price',
                         'form' => '.filter-form',
-                        'min' => 1000,
+                        'min' => 150,
                         'max' => 10000,
                         'step' => 100,
                         'current' => $filters['price']
@@ -128,7 +128,7 @@
             width: auto !important;
         }
 
-        .slider.slider-horizontal .slider-tick, 
+        .slider.slider-horizontal .slider-tick,
         .slider.slider-horizontal .slider-handle {
             margin-left: -7px;
         }

@@ -19,7 +19,7 @@ class LocationController extends Controller
     protected function getFilters(Request $request)
     {
         $title = $request->title ?? "";
-        $price = $request->get('price') ? explode(',', $request->get('price')) : [1000, 10000];
+        $price = $request->get('price') ? explode(',', $request->get('price')) : [150, 10000];
         // $time = $request->get('time') ? explode(',', $request->get('time')) : [8, 23];
         $payment_method = $request->get('payment_method') ?? [];
         $person_count = $request->get('person_count');
@@ -48,8 +48,8 @@ class LocationController extends Controller
 
         if($filters['person_count']){
             $locations->where('person_count', '>', $filters['person_count']);
-        }   
-        
+        }
+
         $locations = $locations->orderBy('created_at', 'DESC')
             ->get();
 
@@ -63,7 +63,7 @@ class LocationController extends Controller
 
         $categories = Category::all()->sortByDesc(function($item){
             return $item->locations->count();
-        })->slice(0, 10);   
+        })->slice(0, 10);
 
         return view('app.catalog.index', compact('locations', 'filters', 'categories'));
     }

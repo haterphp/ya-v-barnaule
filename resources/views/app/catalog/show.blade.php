@@ -25,27 +25,29 @@
 <div class="wrap wrap-catalog">
     <div class="site-container">
         <div class="row mt-3">
-            <div class="col-12 col-lg-6 pr-5 catalog-slider">
-                <div id="primary-slider" class="splide w-100">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach ($location->photos() as $image)
-                                <li class="splide__slide rounded">
-                                    <img src="{{ $image }}">
-                                </li>
-                            @endforeach
-                        </ul>
+            <div class="col-12 col-lg-6 pr-5">
+                <div class="catalog-slider">
+                    <div id="primary-slider" class="splide w-100">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach ($location->photos() as $image)
+                                    <li class="splide__slide rounded">
+                                        <img src="{{ $image }}">
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div id="secondary-slider" class="splide mt-4 w-100">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach ($location->photos() as $image)
-                                <li class="splide__slide rounded">
-                                    <img src="{{ $image }}">
-                                </li>
-                            @endforeach
-                        </ul>
+                    <div id="secondary-slider" class="splide mt-4 w-100">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach ($location->photos() as $image)
+                                    <li class="splide__slide rounded">
+                                        <img src="{{ $image }}">
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,14 +88,14 @@
                     <div class="d-flex align-items-center">
                         <b class="mr-3">Рейтинг:</b>
                     </div>
-                    <div class="wrap d-flex mt-4">            
+                    <div class="wrap d-flex mt-4">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#booking-modal" id="btn-booking-modal">Забронировать</button>
                         <form action="{{ route('wish.store', ['location' => $location]) }}" method="post">
                             @csrf
                             <button class="btn btn-light ml-2 d-flex align-items-center justify-content-center">
-                                @if (auth()->user() && auth()->user()->wishList->pluck('id')->contains($location->id)) 
+                                @if (auth()->user() && auth()->user()->wishList->pluck('id')->contains($location->id))
                                     <i class="fa fa-heart wish-list-icon active"></i>
-                                @else 
+                                @else
                                     <i class="far fa-heart wish-list-icon"></i>
                                 @endif
                             </button>
@@ -208,7 +210,12 @@
 	    height: auto;
     }
 
-    
+    .catalog-slider{
+        position: sticky;
+        top: 35px;
+    }
+
+
 </style>
 @endpush
 
@@ -284,7 +291,7 @@
                 <p class="text-muted"><i class="fas text-muted fa-envelope"></i> Почта: {{ auth()->user()->email }} </p>
             @else
                 <p class="text-muted">Чтобы забронировать локацию, пожалуйста <a href="{{ route('auth.create') }}" class="btn-link">войдите</a> в профиль</p>
-            @endauth       
+            @endauth
             <div class="form-group">
                 <label>Время Бронирование</label>
                 <div class="row">
@@ -307,7 +314,7 @@
                         </div>
                     </div>
                 </div>
-            </div>        
+            </div>
           </form>
         </div>
         <div class="modal-footer d-flex justify-content-between align-items-center">

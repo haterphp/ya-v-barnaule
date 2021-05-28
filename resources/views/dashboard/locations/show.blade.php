@@ -34,6 +34,13 @@
         overflow: hidden;
         border-radius: .25rem;
     }
+
+    .cover-description{
+        white-space: nowrap;
+        overflow: hidden;
+        width: 50%;
+        text-overflow: ellipsis;
+    }
 </style>
 @endpush
 
@@ -41,7 +48,7 @@
 <div class="image-preview-header" style="background-image: url('{{ $location->photos(0) }}');">
     <div class="wrap pl-5 h-100 d-flex flex-column justify-content-center">
         <h1 class="h2 text-white w-50">{{ $location->title }}</h1>
-        <p class="text-white w-75">{{ $location->description }}</p>
+        <p class="text-white w-75 cover-description">{{ $location->description }}</p>
     </div>
 </div>
 @endsection
@@ -82,11 +89,11 @@
                         <tbody>
                             @foreach ($location->orders->sortBy(function($item){
                                 return $item->started_at;
-                            }) as $key => $order)                    
+                            }) as $key => $order)
                                 <tr>
                                     <th scope="row">{{ $order->code }}</th>
                                     <td>
-                                        с {{ dateFormat($order->started_at, 'Y/m/d H:i') }} 
+                                        с {{ dateFormat($order->started_at, 'Y/m/d H:i') }}
                                         до {{ dateFormat($order->finished_at, 'Y/m/d H:i') }}
                                     </td>
                                     <td>{{ $order->user->name }}</td>
