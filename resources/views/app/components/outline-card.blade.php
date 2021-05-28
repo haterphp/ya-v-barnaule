@@ -48,7 +48,7 @@
                 </p>
                 <p class="text-muted mb-2 mt-2">
                     <i class="fa text-muted fa-clock mr-2"></i>
-                    с {{ dateFormat($location->pivot->started_at, 'm/d H:i') }} 
+                    с {{ dateFormat($location->pivot->started_at, 'm/d H:i') }}
                     до {{ dateFormat($location->pivot->finished_at, 'm/d H:i') }}
                 </p>
                 {!! orderStatus($location->pivot->status) !!}
@@ -107,7 +107,7 @@
     @endpush
 
     @push('js')
-        
+
         <script>
             function changeOrder(id){
                 console.log(id);
@@ -136,14 +136,14 @@
         </script>
         <script>
             const container = document.querySelector('#review-modal');
-            const modal = new ReviewModal({container}); 
+            const modal = new ReviewModal({container});
         </script>
         <script>
             const url = new URLSearchParams(location.search);
-            const state = url.get('state') || null; 
+            const state = url.get('state') || null;
             if(state === 'modal') {
-                const id = history.state 
-                            ? history.state.id 
+                const id = history.state
+                            ? history.state.id
                             : modal.container.querySelector('input[name="_id"]').value;
                 modal.changeOrder(id);
                 $('#review-modal').modal('show');

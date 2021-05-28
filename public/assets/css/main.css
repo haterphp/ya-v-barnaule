@@ -215,7 +215,7 @@ h1 { font-size: 60px }
 }
 
 .catalog-card .card-image{
-    height: 200px;
+    max-height: 450px;
     overflow: hidden;
     border-radius: .25rem;
     display: flex;
@@ -228,12 +228,12 @@ h1 { font-size: 60px }
     z-index: 1;
 }
 
-.catalog-card:hover .card-image > img{
-    transform: scale(1.1);
-}
+/*.catalog-card:hover .card-image > img{*/
+/*    transform: scale(1.1);*/
+/*}*/
 
 .catalog-card .card-image img{
-    width: 120%;
+    width: 100%;
     transition: .3s ease;
 }
 
