@@ -20,79 +20,81 @@
         }
     </script>
 @endpush
-
-<div class="filter-container">
-    <div class="filter card">
-        <a href="#filter-price-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-price-collapse">
-            <h6 class="mb-0">Цена</h6>
-        </a>
-        <div class="collapse show" id="filter-price-collapse">
-            <div class="card card-body">
-                @include('app.components.range', [
-                    'id' => 'filter-price-range',
-                    'name' => 'price',
-                    'form' => '.filter-form',
-                    'min' => 1000,
-                    'max' => 10000,
-                    'step' => 100,
-                    'current' => $filters['price']
-                ])
+<form class="filter-form">
+    <input type="hidden" value="{{ $filters['title'] }}" id="input-title-clone" name="title">
+    <div class="filter-container">
+        <div class="filter card">
+            <a href="#filter-price-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-price-collapse">
+                <h6 class="mb-0">Цена</h6>
+            </a>
+            <div class="collapse show" id="filter-price-collapse">
+                <div class="card card-body">
+                    @include('app.components.range', [
+                        'id' => 'filter-price-range',
+                        'name' => 'price',
+                        'form' => '.filter-form',
+                        'min' => 1000,
+                        'max' => 10000,
+                        'step' => 100,
+                        'current' => $filters['price']
+                    ])
+                </div>
             </div>
         </div>
-    </div>
-    <div class="filter card">
-        <a href="#filter-payment_method-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-payment_method-collapse">
-            <h6 class="mb-0">Вид оплаты</h6>
-        </a>
-        <div class="collapse show" id="filter-payment_method-collapse">
-            <div class="card card-body">
-                <div class="form-group form-checkbox">
-                    <input type="checkbox" name="payment_method[]" onchange="document.querySelector('.filter-form').submit()" value="cash" @if(collect($filters['payment_method'])->contains('cash'))checked @endif id="payment-method-cash">
-                    <label class="form-checkbox-label" for="payment-method-cash">
+        <div class="filter card">
+            <a href="#filter-payment_method-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-payment_method-collapse">
+                <h6 class="mb-0">Вид оплаты</h6>
+            </a>
+            <div class="collapse show" id="filter-payment_method-collapse">
+                <div class="card card-body">
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" name="payment_method[]" onchange="document.querySelector('.filter-form').submit()" value="cash" @if(collect($filters['payment_method'])->contains('cash'))checked @endif id="payment-method-cash">
+                        <label class="form-checkbox-label" for="payment-method-cash">
                         <span>
                             <i class="fa fa-money-bill-wave fa-lg mr-2 text-success"></i> Наличный расчет
                         </span>
-                    </label>
-                </div>
-                <div class="form-group form-checkbox">
-                    <input type="checkbox" name="payment_method[]" onchange="document.querySelector('.filter-form').submit()" value="non-cash" id="payment-method-non-cash" @if(collect($filters['payment_method'])->contains('non-cash'))checked @endif>
-                    <label class="form-checkbox-label" for="payment-method-non-cash">
+                        </label>
+                    </div>
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" name="payment_method[]" onchange="document.querySelector('.filter-form').submit()" value="non-cash" id="payment-method-non-cash" @if(collect($filters['payment_method'])->contains('non-cash'))checked @endif>
+                        <label class="form-checkbox-label" for="payment-method-non-cash">
                         <span>
                             <i class="fa fa-credit-card fa-lg mr-2 text-dark"></i> Безналичный расчет
                         </span>
-                    </label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter card">
+            <a href="#filter-persons-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-persons-collapse">
+                <h6 class="mb-0">Кол-во людей</h6>
+            </a>
+            <div class="collapse show" id="filter-persons-collapse">
+                <div class="card-body">
+                    <input type="number" min="1" onchange="document.querySelector('.filter-form').submit()" value="{{ $filters['person_count'] }}" placeholder="Кол-во людей" class="form-control" name="person_count">
+                </div>
+            </div>
+        </div>
+        <div class="filter card">
+            <a href="#filter-catagories-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-catagories-collapse">
+                <h6 class="mb-0">Категории</h6>
+            </a>
+            <div class="collapse show" id="filter-catagories-collapse">
+                <div class="card-body">
+                    <div class="wrap d-flex flex-wrap form-categories-wrap">
+                        @foreach($categories as $category)
+                            <div class="multiple-checkbox-custom">
+                                <input type="checkbox" name="categories[]" onchange="document.querySelector('.filter-form').submit()" id="category-checkbox-{{$category->id}}" value="{{ $category->id }}" @if(collect($filters['categories'])->contains($category->id))checked @endif>
+                                <label for="category-checkbox-{{$category->id}}" class="btn btn-outline-primary">{{ $category->title }}</label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="filter card">
-        <a href="#filter-persons-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-persons-collapse">
-            <h6 class="mb-0">Кол-во людей</h6>
-        </a>
-        <div class="collapse show" id="filter-persons-collapse">
-            <div class="card-body">
-                <input type="number" min="1" onchange="document.querySelector('.filter-form').submit()" value="{{ $filters['person_count'] }}" placeholder="Кол-во людей" class="form-control" name="person_count">
-            </div>
-        </div>
-    </div>
-    <div class="filter card">
-        <a href="#filter-catagories-collapse" class="card-header collapse-dropdown-toggle dropdown-toggle" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="filter-catagories-collapse">
-            <h6 class="mb-0">Категории</h6>
-        </a>
-        <div class="collapse show" id="filter-catagories-collapse">
-            <div class="card-body">
-                <div class="wrap d-flex flex-wrap form-categories-wrap">
-                    @foreach($categories as $category)
-                        <div class="multiple-checkbox-custom">
-                            <input type="checkbox" name="categories[]" onchange="document.querySelector('.filter-form').submit()" id="category-checkbox-{{$category->id}}" value="{{ $category->id }}" @if(collect($filters['categories'])->contains($category->id))checked @endif>
-                            <label for="category-checkbox-{{$category->id}}" class="btn btn-outline-primary">{{ $category->title }}</label>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-slider.css') }}">
