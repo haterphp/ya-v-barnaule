@@ -130,7 +130,7 @@
                     <div class="col-12 col-lg-8">
                             <div class="wrap d-flex flex-column mb-3">
                                 @foreach($reviews as $review)
-                                    <div class="card mt-3">
+                                    <div class="review-card card mt-3">
                                         <div class="card-body d-flex">
                                             <img src="{{ asset('assets/sources/images/default.jpg') }}" class="default-user-image" alt="">
                                             <div class="wrap w-100 ml-3 mt-2">
@@ -150,7 +150,7 @@
                                                         <form action="{{ route('review.destroy', ['review' => $review->id]) }}" method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            <button class="btn btn-light">
+                                                            <button class="btn btn-light remove-review-button">
                                                                 <i class="fa fa-ban text-muted"></i>
                                                             </button>
                                                         </form>

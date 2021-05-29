@@ -17,8 +17,7 @@ class ReviewController extends Controller
             'content' => 'required',
             'rate' => 'required'
         ], [
-            'required.content' => "Поле Комментарий обязательно для заполнения.",
-            'required.rate' => "Пожалуйста укажите рейтинг",
+            'required' => "Поле обязательно для заполнения",
         ])->validate();
 
         $order->reviews()->create($request->all()+['user_id' => Auth::id()]);

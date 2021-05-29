@@ -3,9 +3,11 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
+use Tests\Browser\Traits\UserDatabaseManagement;
 
-class LocationPage extends Page
+class OrdersPage extends Page
 {
+    use UserDatabaseManagement;
     /**
      * Get the URL for the page.
      *
@@ -13,7 +15,7 @@ class LocationPage extends Page
      */
     public function url()
     {
-        return '/catalog/1';
+        return '/profile/orders';
     }
 
     /**
@@ -24,10 +26,9 @@ class LocationPage extends Page
      */
     public function assert(Browser $browser)
     {
-        $location = \App\Models\Location::find(1);
         $browser
-            ->assertTitle("Я в Барнауле - {$location->title}")
-            ->assertSee($location->title)
+            ->assertTitle('Я в Барнауле - Мои бронирования')
+            ->assertSee('Мои бронирования')
             ->assertPathIs($this->url());
     }
 
@@ -39,11 +40,10 @@ class LocationPage extends Page
     public function elements()
     {
         return [
-            '@open-modal' => '#btn-booking-modal',
-            '@booking-button' => '#btn-booking',
-            '@started_at' => 'input[name="started_at"]',
-            '@finished_at' => 'input[name="finished_at"]',
-            '@remove-review-button' => '.remove-review-button'
+            '@modal-open' => '#review-modal-button',
+            '@send-review' => '#review-submit',
+            '@comment' => 'textarea[name="content"]',
+            "@rate" => '.rate-input-stars > .fa-star:first-of-type'
         ];
     }
 }

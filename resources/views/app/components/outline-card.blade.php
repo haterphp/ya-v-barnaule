@@ -8,7 +8,6 @@
     ];
 @endphp
 
-
 <div class="card catalog-card outline-card" style="border: none;">
     <div class="card-image">
         <div class="backdrop">
@@ -27,7 +26,7 @@
                     </form>
                 </div>
                 @if($location->pivot && $location->pivot->status == 1)
-                    <button class="btn btn-light mt-2" data-toggle="modal" data-target-id="{{ $location->pivot->id }}" data-target="#review-modal">Оставить отзыв</button>
+                    <button class="btn btn-light mt-2" id="review-modal-button" data-toggle="modal" data-target-id="{{ $location->pivot->id }}" data-target="#review-modal">Оставить отзыв</button>
                 @endif
             </div>
         </div>
@@ -98,7 +97,7 @@
                         </form>
                     </div>
                     <div class="modal-footer d-flex justify-content-between align-items-center">
-                        <button @guest() disabled @endguest type="button" class="btn btn-primary"
+                        <button @guest() disabled @endguest type="button" class="btn btn-primary" id="review-submit"
                                 onclick="document.querySelector('#review-form').submit()">Отправить</button>
                     </div>
                 </div>

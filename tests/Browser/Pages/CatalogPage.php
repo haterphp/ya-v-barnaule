@@ -46,9 +46,4 @@ class CatalogPage extends Page
             '@categories' => 'input[name="categories[]"][id="category-checkbox-1"]',
         ];
     }
-
-    public function cardsCounts(Browser $browser, $count = 10)
-    {
-        return $browser->assertElementsCountIs($count, '.catalog-card');
-    }
 }
