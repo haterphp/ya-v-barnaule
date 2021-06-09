@@ -7,13 +7,15 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\LocationPage;
+use Tests\Browser\Pages\OrdersPage;
 use Tests\Browser\Traits\DatabaseSeeders;
+use Tests\Browser\Traits\OrderDatabaseManagement;
 use Tests\Browser\Traits\UserDatabaseManagement;
 use Tests\DuskTestCase;
 
 class BookingTest extends DuskTestCase
 {
-    use DatabaseMigrations, DatabaseSeeders, UserDatabaseManagement;
+    use DatabaseMigrations, DatabaseSeeders, UserDatabaseManagement, OrderDatabaseManagement;
 
     public function testEmptyBody()
     {
@@ -69,6 +71,16 @@ class BookingTest extends DuskTestCase
                 ->click('@booking-button')
                 ->pause(700)
                 ->assertSee('Бронирование успешно совершено. Чтобы посмотреть все свои бронирования зайдите в личный кабинет. Так же наши менеджеры свяжутся с вами по указаной вами электронной почте');
+        });
+    }
+
+    public function testViewBookings()
+    {
+        $this->browse(function (Browser $browser){
+            $this->makeOrder();
+            $browser->loginAs($this->findUser(1))
+                ->visit(new OrdersPage)
+                ->assertVisible('.catalog-card');
         });
     }
 }

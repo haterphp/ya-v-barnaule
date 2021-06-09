@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8c47611-d51d-4402-8daf-df69d988d366" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Location/ReviewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Location/ReviewController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/catalog/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/catalog/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/components/outline-card.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/components/outline-card.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/LocationCardTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/LocationCardTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/Pages/CatalogPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/Pages/CatalogPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/Pages/LocationPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/Pages/LocationPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/BookingTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/BookingTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/WishTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/WishTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +78,9 @@
         <option value="$PROJECT_DIR$/tests/Browser/LocationCardTest.php" />
       </list>
     </option>
+  </component>
+  <component name="PhpTemplates">
+    <option name="NEW_PHP_CLASS_LAST_EXTENSION" value="inc" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -314,7 +311,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -358,7 +355,16 @@
       <workItem from="1621484277844" duration="7659000" />
       <workItem from="1622188021326" duration="12254000" />
       <workItem from="1622224840086" duration="2124000" />
-      <workItem from="1622274016397" duration="3850000" />
+      <workItem from="1622274016397" duration="3966000" />
+      <workItem from="1622384908481" duration="137000" />
+      <workItem from="1622641105713" duration="1002000" />
+      <workItem from="1622922321837" duration="465000" />
+      <workItem from="1623086565710" duration="242000" />
+      <workItem from="1623086830934" duration="31000" />
+      <workItem from="1623144609259" duration="2758000" />
+      <workItem from="1623150417178" duration="99000" />
+      <workItem from="1623150524126" duration="1517000" />
+      <workItem from="1623238690378" duration="2463000" />
     </task>
     <servers />
   </component>
